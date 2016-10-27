@@ -1,0 +1,47 @@
+@import "reset";
+@import "mfunction";
+
+body {
+    background-color: #e64d37;
+}
+.bg {
+    position: relative;
+    width: 100%;
+}
+.btn {
+    @include absolute-middle(444, 120, 890, "");
+}
+.ruler {
+    position: absolute;
+    right: px2rem2(10);
+    top: px2rem2(10);
+    width: px2rem(110);
+}
+.ruler-box {
+    position: fixed;
+    top: 0;bottom: 0;
+    left: 0;right: 0;
+    background-color: rgba(0,0,0,.7);
+    
+    .alert {
+        @include absolute-middle(706, 707, "", "");
+        background: url("../images/alert.png") no-repeat;
+        background-size:100% 100%;
+        // @include font-dpr(14);
+        font-size: 0.373rem;
+        color: #666;
+        padding: px2rem(130) px2rem(90) px2rem(10) px2rem(90);
+        overflow: auto;
+        p {
+            margin-bottom: px2rem(10);
+        }
+    }
+
+    .close {
+        position: absolute;
+        right: px2rem2(40);
+        top: 0;
+        width: px2rem2(60);
+        height: px2rem2(60);
+    }
+}
