@@ -36,7 +36,7 @@ var src = {
     img: "src/images",
     html: "src/htmls",
     font: "src/fonts",
-    lib: "src/lib",
+    lib: "src/jslib",
     rev: "src/rev"
 };
 var destDir = options.dir || "dest";
@@ -44,11 +44,14 @@ var dest = {
     css: destDir + "/css",
     js: destDir + "/js",
     img: destDir + "/images",
-    html: destDir + "",
-    file: destDir + "/files"
+    html: destDir + "/",
+    font: destDir + "/fonts",
+    lib: destDir + "/jslib"
 };
 
 gulp.task("clean", function(){
+    // 打印参数
+    console.log(options);
     return gulp.src(destDir, {read: false}).pipe(clean());
 });
 
@@ -63,7 +66,6 @@ gulp.task("html", function(){
         minifyJS: true,
         minifyCSS: true
     };
-    console.log(options);
     return gulp.src(src.html + '/**/*.html')
         .pipe(gulpif(options.env === 'production', htmlmin(opt)))
         .pipe(gulp.dest( dest.html ));
@@ -72,7 +74,7 @@ gulp.task("html", function(){
 gulp.task('css', function() {
     return gulp.src([src.css + "/*.scss", src.css + '/**/*.scss'])
         .pipe(plumber())
-        .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(gulpif(options.env === 'production', sass({outputStyle: 'compressed'}), sass()))
         .pipe(autoprefixer())
         .pipe(plumber.stop())
         .pipe(rev())
@@ -87,34 +89,57 @@ gulp.task('js', function(){
         .pipe(babel({ presets: ['es2015'] }))
         .pipe(gulpif(options.env === 'production', uglify()))
         .pipe(plumber.stop())
-        .pipe(gulp.dest(dest.js));
-});
-
-// 图片跟字体
-gulp.task('file', function(){
-    return gulp.src([src.font + "/*", src.img + "/*", src.lib + "/*"])
         .pipe(rev())
-        .pipe(gulp.dest(dest.file))
+        .pipe(gulp.dest(dest.js))
         .pipe( rev.manifest() )
-        .pipe( gulp.dest(src.rev + "/files") );
+        .pipe( gulp.dest(src.rev + "/js") );
 });
 
-gulp.task('rev', function () {
+// 图片
+gulp.task('images', function(){
+    return gulp.src(src.img + "/*")
+        .pipe(rev())
+        .pipe(gulp.dest(dest.img))
+        .pipe( rev.manifest() )
+        .pipe( gulp.dest(src.rev + "/img") );
+});
+
+// 字体
+gulp.task('font', function(){
+    return gulp.src(src.font + "/*")
+        .pipe(rev())
+        .pipe(gulp.dest(dest.font))
+        .pipe( rev.manifest() )
+        .pipe( gulp.dest(src.rev + "/font") );
+});
+
+// 其它文件 库
+gulp.task('files', function(){
+    return gulp.src(src.lib + "/*")
+        .pipe(gulp.dest(dest.lib))
+});
+
+gulp.task('revhtml', function () {
     return gulp.src([src.rev + '/**/*.json', dest.html + '/**/*.html'])
         .pipe( revCollector({
-            dirReplacements: {
-                '../css': './css',
-                '../js': './js',
-                '../lib': "./lib",
-                'cdn/': function(manifest_value) {
-                    return '//cdn' + (Math.floor(Math.random() * 9) + 1) + '.' + 'exsample.dot' + '/img/' + manifest_value;
+                dirReplacements: {
+                    '../css': './css',
+                    '../js': './js',
+                    '../jslib': "./jslib",
+                    '../images': './images',
+                    'cdn/': function(manifest_value) {
+                        return '//cdn' + (Math.floor(Math.random() * 9) + 1) + '.' + 'exsample.dot' + '/img/' + manifest_value;
+                    }
                 }
-            }
-        }) )
+            }))
         .pipe( gulp.dest(dest.html) );
 });
-
+gulp.task('revcss', function () {
+    return gulp.src([src.rev + '/**/*.json', dest.css + "/*.css"])
+        .pipe( revCollector())
+        .pipe( gulp.dest(dest.css) );
+});
 
 gulp.task('default', function (cb) {
-    runSequence('clean', ['css', 'html', 'js', 'file'], 'rev', cb);
+    runSequence('clean', ['css', 'html', 'js', 'images', "font", "files"], 'revhtml', "revcss", cb);
 });
