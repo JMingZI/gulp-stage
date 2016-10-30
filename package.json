@@ -30,6 +30,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-rev": "^7.1.2",
     "gulp-rev-collector": "^1.0.5",
+    "gulp-ruby-sass": "^2.1.0",
     "gulp-run-sequence": "^0.3.2",
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0",

@@ -1,28 +1,84 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>首登送好礼</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <meta charset="utf-8"/>
-    <script src="https://video.statics.cdn.jituancaiyun.com/js/set-mobile-viewport/2.0/index.js"></script>
-</head>
+@@include("../template/header.tpl", {
+    "title": "盛通网络OA系统"
+})
 <body>
-    <img src="../images/bg.png?v=4" alt="" class="bg">
-    <img src="../images/btn.png" alt="" class="btn" onclick="location.href='https://video.statics.cdn.jituancaiyun.com/sell/beginner.html'">
-    <img src="../images/ruler.png?v=1" alt="" class="ruler">
-    
-    <div class="ruler-box" style="display:none;">
-        <div class="alert">
-            <p>（1）活动时间：2016年11月1日起至2016年12月31日 </p>
-            <p>（2）活动期间，历史首次安装登录集团彩云客户端的杭州移动用户，送5元话费/户，次月自动返冲到账。每个手机号仅限参加一次首登活动。 </p>
-            <p>（3）本活动仅限集团彩云杭州移动新用户参加，每个手机号码仅限参加一次首登送好礼活动。 </p>
-            <p>说明：如您的单位未开通集团彩云业务，则您无法登录集团彩云客户端。详询10086。 </p>
+    <!-- 导航 -->
+    @@include("../template/nav.tpl")
 
-            <div class="close"></div>
+    <!-- 内容容器 -->
+    <div class="container index">
+
+        <!-- 公告说明 -->
+        <div class="panel-group margin-top">
+            <div class="media media-x">
+                <a class="float-left" href="#">
+                    <img src="http://www.pintuer.com/images/64.png" class="img-border radius-circle img-responsive">
+                </a>
+            <div class="media-body">
+                <strong>盛通网络</strong> 盛通网络OA数据统计分析系统。</div>
+            </div>
         </div>
+
+        <div class="line-middle">
+            <div class="xb6">
+                <div class="panel margin-top">
+                    <div class="panel-head">综合公告</div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li>十月份工作总结任务发布
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar bg-yellow" style="width: 80%;">进度：80%</div>
+                                </div>
+                            </li>
+                            <li>刘某某今日请假2天<span class="float-right">2016-10-30</span></li>
+                            <li>陈xx今日迟到半个小时，扣除20元<span class="float-right">2016-10-30</span></li>
+                            <li>陈xx今日迟到半个小时，扣除20元<span class="float-right">2016-10-30</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="xb6">
+                <div class="panel margin-top">
+                    <div class="panel-head">公共客户资源</div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li>公共客户资源公共客户资源公共客户资源 <span class="float-right">2016-10-30</span></li>
+                            <li>公共客户资源公共客户资源公共客户资源<span class="float-right">2016-10-30</span></li>
+                            <li>公共客户资源公共客户资源公共客户资源<span class="float-right">2016-10-30</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <div class="line-middle">
+            <div class="xb6">
+                <div class="panel margin-top">
+                    <div class="panel-head">商务部荣誉墙</div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li>刘某某今日请假2天<span class="float-right badge bg-yellow">5单</span></li>
+                            <li>陈xx今日迟到半个小时，扣除20元<span class="float-right badge bg-blue">4单</span></li>
+                            <li>陈xx今日迟到半个小时，扣除20元<span class="float-right badge bg-gray">3单</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="xb6">
+                <div class="panel margin-top">
+                    <div class="panel-head">技术部荣誉墙</div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li>刘某某今日请假2天<span class="float-right badge bg-yellow">5单</span></li>
+                            <li>陈xx今日迟到半个小时，扣除20元<span class="float-right badge bg-blue">4单</span></li>
+                            <li>陈xx今日迟到半个小时，扣除20元<span class="float-right badge bg-gray">3单</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <script src="https://video.statics.cdn.jituancaiyun.com/js/zepto.js"></script>
-    <script src="https://video.statics.cdn.jituancaiyun.com/js/fastclick.js"></script>
-    <script src="../js/index.js"></script>
-</body>
-</html>
+@@include("../template/footer.tpl", {
+    "modal": "index"
+})    

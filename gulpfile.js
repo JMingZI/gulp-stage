@@ -10,7 +10,7 @@
  */
 
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+// var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
 var autoprefixer = require('gulp-autoprefixer');
@@ -22,6 +22,8 @@ var revCollector = require('gulp-rev-collector');
 var gulpif = require('gulp-if'); 
 var minimist = require('minimist');
 var htmlmin = require("gulp-htmlmin");
+var fileinclude = require('gulp-file-include');
+var sass = require('gulp-ruby-sass');
 
 // 命令行参数
 var defaultOptions = {
@@ -36,7 +38,7 @@ var src = {
     img: "src/images",
     html: "src/htmls",
     font: "src/fonts",
-    lib: "src/jslib",
+    lib: "src/lib",
     rev: "src/rev"
 };
 var destDir = options.dir || "dest";
@@ -46,7 +48,7 @@ var dest = {
     img: destDir + "/images",
     html: destDir + "/",
     font: destDir + "/fonts",
-    lib: destDir + "/jslib"
+    lib: destDir + "/lib"
 };
 
 gulp.task("clean", function(){
@@ -67,10 +69,14 @@ gulp.task("html", function(){
         minifyCSS: true
     };
     return gulp.src(src.html + '/**/*.html')
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
         .pipe(gulpif(options.env === 'production', htmlmin(opt)))
         .pipe(gulp.dest( dest.html ));
 });
-
+// 本机安装gulp-sass 报错，
 gulp.task('css', function() {
     return gulp.src([src.css + "/*.scss", src.css + '/**/*.scss'])
         .pipe(plumber())
@@ -82,9 +88,21 @@ gulp.task('css', function() {
         .pipe( rev.manifest() )
         .pipe( gulp.dest(src.rev + "/css") );
 });
+// 替换为gulp-ruby-sass
+gulp.task('ruby-sass', function() {
+    return sass([src.css + "/*.scss", src.css + '/**/*.scss'], gulpif(options.env === 'production', {style: 'compressed'}, {}))
+        .pipe(plumber())
+        .pipe(autoprefixer())
+        .pipe(plumber.stop())
+        .pipe(rev())
+        .on('error', sass.logError)
+        .pipe(gulp.dest(dest.css))
+        .pipe( rev.manifest() )
+        .pipe( gulp.dest(src.rev + "/css") );
+});
 
 gulp.task('js', function(){
-    return gulp.src([src.js + "/*.js", src.js + '/**/*.js'])
+    return gulp.src([src.js + '/**/*.js'])
         .pipe(plumber())
         .pipe(babel({ presets: ['es2015'] }))
         .pipe(gulpif(options.env === 'production', uglify()))
@@ -115,8 +133,11 @@ gulp.task('font', function(){
 
 // 其它文件 库
 gulp.task('files', function(){
-    return gulp.src(src.lib + "/*")
+    return gulp.src([src.lib + "/*", src.lib + "/**/*"])
+        .pipe(rev())
         .pipe(gulp.dest(dest.lib))
+        .pipe( rev.manifest() )
+        .pipe( gulp.dest(src.rev + "/lib") );
 });
 
 gulp.task('revhtml', function () {
@@ -125,7 +146,7 @@ gulp.task('revhtml', function () {
                 dirReplacements: {
                     '../css': './css',
                     '../js': './js',
-                    '../jslib': "./jslib",
+                    '../lib': "./lib",
                     '../images': './images',
                     'cdn/': function(manifest_value) {
                         return '//cdn' + (Math.floor(Math.random() * 9) + 1) + '.' + 'exsample.dot' + '/img/' + manifest_value;
@@ -141,5 +162,7 @@ gulp.task('revcss', function () {
 });
 
 gulp.task('default', function (cb) {
-    runSequence('clean', ['css', 'html', 'js', 'images', "font", "files"], 'revhtml', "revcss", cb);
+    runSequence('clean', ['ruby-sass', 'html', 'js', 'images', "font", "files"], 'revhtml', "revcss", cb);
 });
+
+// gulp.watch([src.html + '/**/*.html', src.css + "/*.scss", src.css + '/**/*.scss', src.js + '/**/*.js'], 'html');
