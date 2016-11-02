@@ -10,28 +10,23 @@
         <div class="xl12 xs2 xm2 xb1">
             <button class="button icon-navicon float-right" data-target="#header-demo3">
             </button>
-            <img src="/images/40.png" />
+            <img width="50px" src="../images/logo2.png" />
         </div>
         <div class=" xl12 xs10 xm10 xb11 padding-top nav-navicon" id="header-demo3">
             <div class="xs8 xm8 xb6">
                 <ul class="nav nav-menu nav-inline">
-                    <li class="active"><a href="#">首页</a> </li>
-                    <li><a href="#">企业通讯录</a> </li>
-                    <li><a href="#">综合公告</a> </li>
-                    <li><a href="#">考勤统计<span class="arrow"></span></a>
+                    <li class="active"><a href="index.html">首页</a> </li>
+                    <li><a href="contacts.html">企业通讯录</a> </li>
+                    <li><a href="annous.html">综合公告</a> </li>
+                    <li><a href="sign.html">考勤统计</a></li>
+                    <li><a href="resource.html">业绩统计</a></li>
+                    <li><a href="user.html">个人中心<span class="arrow"></span></a>
                         <ul class="drop-menu">
                             <li><a href="#">概述</a> </li>
-                            <li><a href="#">网格系统<span class="arrow"></span></a>
-                                <ul>
-                                    <li><a href="#">响应式布局</a> </li>
-                                    <li><a href="#">非响应式布局</a> </li>
-                                </ul>
-                            </li>
-                            <li><a href="#">图标</a> </li>
+                            <li><a href="#">网格系统</a></li>
+                            <li><a href="#">退出登录</a> </li>
                         </ul>
                     </li>
-                    <li><a href="#">业绩统计</a></li>
-                    <li><a href="#">个人中心<span class="arrow"></span></a></li>
                 </ul>
             </div>
             <div class="xs4 xm4 xb3">
