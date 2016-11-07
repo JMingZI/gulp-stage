@@ -1,0 +1,29 @@
+@@include("../../template/header.tpl", {
+    "title": "考勤统计 - 盛通网络OA系统", "modal": "admin", "level": 2
+})
+<body>
+<!-- 导航 -->
+@@include("../../template/nav.tpl", {
+"modal": "admin", "level": 2
+})
+
+<!-- 内容容器 -->
+<div class="container sign">
+    <div class="panel margin-top">
+        <div class="panel-head">考勤统计数据说明</div>
+        <div class="panel-body">
+            <ul>
+                <li>数据统计分部门排列</li>
+                <li>显示的为各部门迟到的人（因为部门人数不一致）</li>
+            </ul>
+        </div>
+    </div>
+    <div class="margin-top text-center">
+    <div id="main" style="width: 1000px;height:500px;margin:0 auto;"></div>
+    </div>
+</div>
+
+<script src="../../lib/echarts/echarts.min.js"></script>
+@@include("../../template/footer.tpl", {
+"modal": "sign", "level": 2
+})

@@ -1,25 +1,33 @@
 @@include("../template/header.tpl", {
-    "title": "企业通讯录 - 盛通网络OA系统"
+    "title": "企业通讯录 - 盛通网络OA系统","modal": "contacts", "level": 1
 })
 <body>
     <!-- 导航 -->
-    @@include("../template/nav.tpl")
+    @@include("../template/nav.tpl",{
+        "modal": "contacts", "level": 1
+    })
 
     <!-- 内容容器 -->
     <div class="container contacts">
         <div class="panel margin-top">
-            <div class="panel-head">企业通讯录</div>
+            <div class="panel-head clearfix">
+                <i class="icon icon-sitemap"></i> <span class="text-main">盛通网络</span> - 企业通讯录 -
+                <span class="text-main">当前部门</span> /
+                <a href="javascript:;" class="text-red dialogs" data-toggle="click" data-target="#dept" data-mask="1" data-width="500px">编辑部门</a>
+
+                <button class="button bg-red float-right dialogs" data-toggle="click" data-target="#dept" data-mask="1" data-width="500px" style="margin-left: 10px;">添加部门</button>
+                <button class="button bg-red float-right dialogs" data-toggle="click" data-target="#user" data-mask="1" data-width="600px">添加人员</button>
+            </div>
             <div class="panel-body">
                 <div class="line-middle">
                     <div class="xb3 bg-back">
                         <ul class="list-group">
-                            <li class="text-main">盛通网络</li>
-                            <li>商务部</li>
-                            <li>技术部</li>
-                            <li>人事部</li>
-                            <li>人事部</li>
-                            <li>人事部</li>
-                            <li>人事部</li>
+                            <li><i class="icon icon-angle-right"></i><span class="float-right badge">3人</span> 总经理</li>
+                            <li><i class="icon icon-angle-right"></i><span class="float-right badge">3人</span> 商务一部</li>
+                            <li><i class="icon icon-angle-right"></i><span class="float-right badge">3人</span> 商务二部</li>
+                            <li><i class="icon icon-angle-right"></i><span class="float-right badge">3人</span> 技术部</li>
+                            <li><i class="icon icon-angle-right"></i><span class="float-right badge">3人</span> 人事部</li>
+                            <li><i class="icon icon-angle-right"></i><span class="float-right badge">3人</span> 客服部</li>
                         </ul>
                     </div>
                     <div class="xb9">
@@ -37,6 +45,7 @@
                                 <td>18358185826@qq.com</td>
                                 <td>优秀</td>
                                 <td>
+                                    <a href="" class="text-sub">查看</a>
                                     <a href="" class="text-sub">编辑</a>
                                     <a href="" class="text-red">删除</a>
                                 </td>
@@ -47,6 +56,7 @@
                                 <td>18358185826@qq.com</td>
                                 <td>优秀</td>
                                 <td>
+                                    <a href="" class="text-sub">查看</a>
                                     <a href="" class="text-sub">编辑</a>
                                     <a href="" class="text-red">删除</a>
                                 </td>
@@ -57,6 +67,140 @@
             </div>
         </div>
     </div>
+
+    <!--添加部门-->
+    <div id="dept">
+        <div class="dialog">
+            <div class="dialog-head">
+                <span class="close rotate-hover"></span><strong>添加部门</strong>
+            </div>
+            <div class="dialog-body">
+                <div class="form-group">
+                    <div class="label">
+                        <label for="deptname">部门名称</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="deptname" name="deptname" size="30" placeholder="部门名称" />
+                    </div>
+                </div>
+            </div>
+            <div class="dialog-foot">
+                <button class="button dialog-close">取消</button>
+                <button class="button bg-green">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <!--添加人员-->
+    <div id="user">
+        <div class="dialog">
+            <div class="dialog-head">
+                <span class="close rotate-hover"></span><strong>添加人员</strong>
+            </div>
+            <div class="dialog-body">
+                <div class="line-middle">
+                    <div class="xb6">
+                        <div class="form-group">
+                            <div class="label">
+                                <label for="deptname">姓名</label>
+                            </div>
+                            <div class="field">
+                                <input type="text" class="input" id="username" name="username" size="30" placeholder="请输入姓名" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xb6">
+                        <div class="form-group">
+                            <div class="label">
+                                <label for="phone">手机号</label>
+                            </div>
+                            <div class="field">
+                                <input type="text" class="input" id="phone" name="phone" size="13" placeholder="请输入手机号" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="line-middle">
+                    <div class="xb6">
+                        <div class="form-group">
+                            <div class="label">
+                                <label for="fromdept">所属部门</label>
+                            </div>
+                            <div class="field">
+                                <select class="input" name="fromdept" id="fromdept">
+                                    <option>技术部</option>
+                                    <option>商务部</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xb6">
+                        <div class="form-group">
+                            <div class="label">
+                                <label for="job">职位</label>
+                            </div>
+                            <div class="field">
+                                <select class="input" name="job" id="job">
+                                    <option value="0">总经理</option>
+                                    <option value="1">主管</option>
+                                    <option value="2">副主管</option>
+                                    <option value="3">普通员工</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="line-middle">
+                    <div class="xb6">
+                        <div class="form-group">
+                            <div class="label">
+                                <label for="email">邮箱</label>
+                            </div>
+                            <div class="field">
+                                <input type="text" class="input" id="email" name="email" size="30" placeholder="请输入邮箱" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xb6">
+                        <div class="form-group">
+                            <div class="label">
+                                <label for="address">住址</label>
+                            </div>
+                            <div class="field">
+                                <input type="text" class="input" id="address" name="address" size="200" placeholder="请输入住址" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dialog-foot">
+                <button class="button dialog-close">取消</button>
+                <button class="button bg-green">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <!--查看和删除-->
+    <a href="javascript:;" style="display:none;" data-toggle="click" data-target="#view-user-detail" data-mask="1" data-width="600px" class="dialogs"></a>
+    <a href="javascript:;" style="display:none;" data-toggle="click" data-target="#del-user" data-mask="1" data-width="300px" class="dialogs"></a>
+
+    <!--删除人员-->
+    <div id="del-user">
+        <div class="dialog">
+            <div class="dialog-head">
+                <span class="close rotate-hover"></span><strong>警告</strong>
+            </div>
+            <div class="dialog-body">
+                确认删除该人员吗？
+            </div>
+            <div class="dialog-foot">
+                <button class="button dialog-close">取消</button>
+                <button class="button bg-green">确认</button>
+            </div>
+        </div>
+    </div>
+
+
 @@include("../template/footer.tpl", {
-    "modal": "contact"
+    "modal": "contact", "level": 1
 })    

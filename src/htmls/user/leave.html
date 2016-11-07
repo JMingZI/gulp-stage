@@ -1,0 +1,78 @@
+@@include("../../template/header.tpl", {
+"title": "我要请假 - 盛通网络OA系统", "modal": "user", "level": 2
+})
+<body>
+<!-- 导航 -->
+@@include("../../template/nav.tpl", {
+"modal": "user", "level": 2
+})
+
+<!-- 内容容器 -->
+<div class="container sign">
+    <div class="panel margin-top">
+        <div class="panel-head"><i class="icon icon-pencil"></i> 请假系统</div>
+        <div class="panel-body">
+            <p><i class="icon icon-star-o"></i> 请假流程为：自己 > 部门主管 > 人事 > 总经理</p>
+
+            <div class="line">
+                <div class="xb12">
+                    <form method="post" class="form form-block">
+                        <div class="form-group">
+                            <div class="label">
+                                <label for="username">请假标题</label>
+                            </div>
+                            <div class="field">
+                                <input type="text" class="input" id="username" name="username" size="30" placeholder="请输入请假标题" data-validate="required:必填"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="label">
+                                <label for="content">请假内容</label>
+                            </div>
+                            <div class="field">
+                                <textarea style="min-height: 200px;" class="input" id="content" name="content" placeholder="请输入请假内容" data-validate="required:必填"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="label">
+                                <label>选择时间</label>
+                            </div>
+                            <div class="line">
+                                <div class="xb3">
+                                    <div class="field">
+                                        <input type="text" class="input" name="username" size="30" placeholder="请选择开始时间" data-validate="required:必填" />
+                                    </div>
+                                </div>
+                                <div class="xb3 x1-move">
+                                    <div class="field">
+                                        <input type="text" class="input" name="username" size="30" placeholder="请选择结束时间" data-validate="required:必填" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="label">
+                                <label>请假天数(例如：0.5/1/1.5/2/2.5天)</label>
+                            </div>
+                            <div class="line">
+                                <div class="xb3">
+                                    <div class="field">
+                                        <input type="number" class="input" name="" size="30" placeholder="请输入请假天数" data-validate="required:必填" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-button">
+                            <button class="button bg-main" type="submit">确定提交</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@@include("../../template/footer.tpl", {
+"modal": "leave", "level": 2
+})

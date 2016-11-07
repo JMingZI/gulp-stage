@@ -2,22 +2,20 @@
     <div class="border-top padding-top">
         <div class="text-center">
             <ul class="nav nav-inline">
-                <li class="active"><a href="#">网站首页</a> </li>
-                <li><a href="#">新闻资讯</a> </li>
-                <li><a href="#">产品中心</a> </li>
-                <li><a href="#">技术反馈</a> </li>
-                <li><a href="#">留言反馈</a> </li>
-                <li><a href="#">联系方式</a> </li>
+                <li class="active"><a href="#">系统首页</a> </li>
+                <li><a href="#">@Jmingzi</a> </li>
+                <li><a href="#">学习，不只是一种状态！</a> </li>
             </ul>
         </div>
         <div class="text-center height-big">
-            版权所有 © Pintuer.com All Rights Reserved，图ICP备：380959609</div>
+            版权所有 © 盛通网络 All Rights Reserved</div>
     </div>
 </div>
 
 
-<script src="../lib/pintuer/jquery.js"></script>
-<script src="../lib/pintuer/pintuer.js"></script>
-<script src="../js/@@modal/index.js"></script>
+<script src="../@@if (level == 2){../}lib/pintuer/jquery.js"></script>
+<script src="../@@if (level == 2){../}lib/pintuer/pintuer.js"></script>
+
+<script src="../@@if (level == 2){../}js/@@modal/index.js"></script>
 </body>
 </html>

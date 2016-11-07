@@ -1,0 +1,6 @@
+var contacts = {
+    init: function () {
+        
+    }    
+};
+

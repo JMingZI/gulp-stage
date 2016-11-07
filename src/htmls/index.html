@@ -1,9 +1,11 @@
 @@include("../template/header.tpl", {
-    "title": "盛通网络OA系统"
+    "title": "盛通网络OA系统","modal": "index", "level": 1
 })
 <body>
     <!-- 导航 -->
-    @@include("../template/nav.tpl")
+    @@include("../template/nav.tpl",{
+    "modal": "index", "level": 1
+    })
 
     <!-- 内容容器 -->
     <div class="container index">
@@ -80,5 +82,5 @@
 
     </div>
 @@include("../template/footer.tpl", {
-    "modal": "index"
+    "modal": "index", "level": 1
 })    
